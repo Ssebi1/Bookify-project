@@ -83,8 +83,8 @@ body {
 }
 
 .text--content {
-	margin-top: 4%;
-	width: 50%;
+	width: auto;
+	max-width: 50%;
 	float: left;
 }
 
@@ -122,7 +122,7 @@ body {
 .banner--content img {
 	display: block;
 	margin-top: 110px;
-	width: 40%;
+	width: 30%;
 	float: right;
 	margin-right: 20px;
 }
@@ -130,7 +130,7 @@ body {
 .about {
 	width: 75%;
 	margin: 0 auto;
-	height: 1000px;
+	height: auto;
 }
 
 .about--title {
@@ -142,8 +142,8 @@ body {
 
 .component {
 	margin: 0 auto;
-	height: 200px;
-	width: 400px;
+	height: auto;
+	width: 300px;
 	border-radius: 15px;
 	border: 1px solid black;
 	border-top: 0;
@@ -152,7 +152,7 @@ body {
 
 .component--color {
 	height: 40px;
-	width: 400px;
+	width: 300px;
 	border-radius: 15px 15px 0 0;
 	background: linear-gradient(60deg, #efb1ff, #7f78d2);
 }
@@ -163,6 +163,75 @@ body {
 	flex-wrap: wrap;
 }
 
+.component--title {
+	font-weight: bold;
+	font-size: 25px;
+	padding: 8px;
+	color: #481380;
+	padding-bottom: 20px;
+}
+
+.component--text {
+	font-size: 20px;
+	padding: 8px;
+	color: #481380;
+	padding-bottom: 15px;
+}
+
+.contact {
+	width: 75%;
+	margin: 0 auto;
+	height: auto;
+}
+
+.contact--title {
+	font-size: 40px;
+	font-weight: bold;
+	color: #481380;
+	margin-top: 50px;
+}
+
+.contact--clip {
+	position: absolute;
+	z-index: -1;
+	width: 75%;
+	height: 200px;
+	clip-path: polygon(0 72%, 100% 0, 100% 100%, 0% 100%);
+	background-color: rgb(243, 243, 243);
+}
+
+.contact--flex {
+	display: flex;
+	flex-direction: row;
+	margin-top: 40px;
+	justify-content: space-between;
+}
+
+.contact img {
+	width: 150px;
+	float: right;
+	margin-top: -30px;
+	margin-right: 30%;
+}
+
+.contact--text {
+	font-size: 30px;
+	margin-left: 5%;
+}
+
+.footer {
+	width: 100%;
+	height: auto;
+	background: linear-gradient(60deg, rgba(72, 19, 128, 1), rgba(127, 120, 210, 1));
+	text-align: center;
+	color: #ffe2ff;
+	margin-top: 200px;
+}
+
+.footer--text {
+	padding: 15px;
+}
+
 @media only screen and (max-width: 1000px) {
 	.banner--content img {
 		display: none;
@@ -170,5 +239,31 @@ body {
 
 	.text--content {
 		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.contact img {
+		display: none;
+	}
+
+	.contact--text {
+		font-size: 20px;
+	}
+	.nav--small {
+		visibility: hidden;
+	}
+
+	.banner--content {
+		width: 100%;
+	}
+
+	.text--content {
+		max-width: 90%;
+		margin-left: -20px;
+	}
+
+	.big--text {
+		font-size: 60px;
 	}
 }
