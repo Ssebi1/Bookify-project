@@ -12,6 +12,9 @@ app.listen(port, (error) => {
 	if (error) throw error;
 });
 
+//Root css file
+app.use(express.static(__dirname + '/views'));
+
 //Routes
 app.get('/', (req, res) => {
 	res.render('index.ejs');
