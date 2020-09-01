@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/loginStyle.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="login--container">
+        <% if (typeof message != "undefined") { %>
+        <br>
+        <div class="alert"><%= message %></div>
+        <% } %>
+        <form action="/auth/login" method="post" class="login--form">
+            <input type="email" name="email" placeholder="Email" autocomplete="off"><br>
+            <input type="password" name="password" placeholder="Password" autocomplete="off"><br>
+            <button type="submit">Login</button>
+        </form>
+        <div class="login--info">Not having an account? Click <a href="/register">here</a> to register</div>
+    </div>
+
+</body>
+
+</html>
