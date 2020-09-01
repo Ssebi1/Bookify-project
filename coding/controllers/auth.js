@@ -25,7 +25,6 @@ exports.register = (req, res) => {
                     message: 'That email is already in use',
                 });
             } else if (password !== passwordConfirm) {
-                console.log('Passwords do not match');
                 return res.render('register', {
                     message: 'Passwords do not match',
                 });
@@ -47,9 +46,16 @@ exports.register = (req, res) => {
                 (error, result) => {
                     if (error) throw error;
                     else {
-                        res.cookie('user_id', result[0].user_id);
-                        res.cookie('username', name);
-                        res.redirect('/');
+                        db.query(
+                            'SELECT user_id FROM users WHERE user_email = ?',
+                            [email],
+                            (error, result) => {
+                                if (error) throw error;
+                                res.cookie('user_id', result[0].user_id);
+                                res.cookie('username', username);
+                                res.redirect('/');
+                            }
+                        );
                     }
                 }
             );
@@ -87,7 +93,7 @@ exports.login = async (req, res) => {
 
                 res.cookie('user_id', result[0].user_id);
                 res.cookie('username', result[0].username);
-                res.redirect('/');
+                res.redirect('/dashboard');
             }
         );
     } catch (error) {
@@ -97,5 +103,6 @@ exports.login = async (req, res) => {
 
 exports.logout = (req, res) => {
     res.clearCookie('username');
+    res.clearCookie('user_id');
     res.redirect('/');
 };

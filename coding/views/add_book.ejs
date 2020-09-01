@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/addBookStyle.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Add Book</title>
+</head>
+
+<body>
+
+    </div>
+    <div class="navbar">
+        <ul>
+            <a href="/">
+                <li class="nav--title">BOOKIFY</li>
+            </a>
+            <a href="#">
+                <li class="nav--small">Profile</li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="login--container">
+        <% if (typeof message != "undefined") { %>
+        <br>
+        <div class="alert"><%= message %></div>
+        <% } %>
+        <form action="/dashboard/crud/create" method="post" class="login--form">
+            <label>Title</label><br>
+            <input type="text" name="title" value=""><br>
+            <label>Author</label><br>
+            <input type="text" name="author" value=""><br>
+            <label>Category</label><br>
+            <input type="text" name="category" value=""><br>
+            <label>Link</label><br>
+            <input type="text" name="link" value=""><br>
+            <label>Completition</label><br>
+            <input type="range" min="0" max="100" value="0" name="progress"><br>
+
+            <button type="submit">Add Book</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

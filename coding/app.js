@@ -1,7 +1,7 @@
 //Server setup
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 //Env setup
 const dotenv = require('dotenv');
@@ -40,7 +40,19 @@ app.use(express.static(__dirname + '/public'));
 
 //Routes
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    if (req.cookies.user_id) {
+        db.query(
+            'SELECT * FROM books WHERE user_id = ?',
+            [req.cookies.user_id],
+            (error, result) => {
+                if (error) throw error;
+                res.render('dashboard.ejs', {
+                    length: result.length,
+                    result,
+                });
+            }
+        );
+    } else res.render('index.ejs');
 });
 
 app.get('/login', (req, res) => {
@@ -53,4 +65,14 @@ app.get('/register', (req, res) => {
     else res.redirect('/');
 });
 
+app.get('/dashboard', (req, res) => {
+    res.redirect('/');
+});
+
+app.get('/dashboard/add_book', (req, res) => {
+    if (req.cookies.username) res.render('add_book.ejs');
+    else res.redirect('/');
+});
+
 app.use('/auth', require('./routes/auth.js'));
+app.use('/dashboard/crud', require('./routes/crud.js'));

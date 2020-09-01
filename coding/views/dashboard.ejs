@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dashboardStyle.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <a href="#">
+                <li class="nav--title">BOOKIFY</li>
+            </a>
+            <a href="#">
+                <li class="nav--small">Profile</li>
+            </a>
+        </ul>
+    </div>
+
+
+    <div class="header">Finished</div>
+    <hr class="categoryHr">
+    <div class="bookArea finished">
+        <% for( var i = 0; i<=length-1; i++) { %>
+        <% if(result[i].book_progress==100) { %>
+        <div class="book">
+            <div class="book--title"><%= result[i].book_title %></div>
+            <div class="book--author">by <%= result[i].book_author %></div>
+            <div class="book--category">Category: <%= result[i].book_category %></div>
+        </div>
+        <% } %>
+        <% } %>
+
+    </div>
+
+
+    <div class="header">On going</div>
+    <hr class="categoryHr">
+    <div class="bookArea onGoing">
+        <% for( var i = 0; i<=length-1; i++) { %>
+        <% if(result[i].book_progress>=1 && result[i].book_progress<=99) { %>
+        <div class="book">
+            <div class="book--title"><%= result[i].book_title %></div>
+            <div class="book--author">by <%= result[i].book_author %></div>
+            <div class="book--category">Category: <%= result[i].book_category %></div>
+            <div class="book--progress">Progres: <%= result[i].book_progress %>%</div>
+        </div>
+        <% } %>
+        <% } %>
+    </div>
+
+    <div class="header">Not Started</div>
+    <hr class="categoryHr">
+    <div class="bookArea notStarted">
+        <% for( var i = 0; i<=length-1; i++) { %>
+        <% if(result[i].book_progress==0) { %>
+        <div class="book">
+            <div class="book--title"><%= result[i].book_title %></div>
+            <div class="book--author">by <%= result[i].book_author %></div>
+            <div class="book--category">Category: <%= result[i].book_category %></div>
+        </div>
+        <% } %>
+        <% } %>
+    </div>
+
+
+
+    <a href='/dashboard/add_book'><button class="add_button" type="submit" placeholder="Add Book">Add Book
+        </button>
+</body>
+
+</html>
