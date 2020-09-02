@@ -61,6 +61,10 @@ body {
     margin-bottom: 20px;
 }
 
+input[type='text'] {
+    font-size: 20px;
+}
+
 .login--container input:focus {
     background-color: #d1d1d1;
 }

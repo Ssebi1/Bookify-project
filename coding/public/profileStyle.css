@@ -1,5 +1,5 @@
 body {
-    margin:0;
+    margin: 0;
     font-family: 'Segoe UI', sans-serif;
 }
 
@@ -79,6 +79,34 @@ body {
 
 .login--form button:hover {
     background-color: #6e65ce;
+}
+
+.logout {
+    width: 80%;
+    font-size: 25px;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logout:hover {
+    background-color: #c51425;
+}
+
+.logout a {
+    color: white;
+    text-decoration: none;
 }
 
 .login--info {
