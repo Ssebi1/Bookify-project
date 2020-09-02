@@ -16,8 +16,12 @@
         <div class="alert"><%= message %></div>
         <% } %>
         <form action="/auth/login" method="post" class="login--form">
-            <input type="email" name="email" placeholder="Email" autocomplete="off"><br>
-            <input type="password" name="password" placeholder="Password" autocomplete="off"><br>
+            <input type="email" name="email" class="email" placeholder="Email" autocomplete="off"><br>
+            <input type="password" name="password" class="password" placeholder="Password" autocomplete="off"><br>
+            <label>
+                <input type="checkbox" class="cookie_expire" name="expire" value="1">
+                Keep me logged in
+            </label><br>
             <button type="submit">Login</button>
         </form>
         <div class="login--info">Not having an account? Click <a href="/register">here</a> to register</div>

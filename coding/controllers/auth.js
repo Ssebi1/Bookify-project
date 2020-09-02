@@ -65,7 +65,7 @@ exports.register = (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password, expire } = req.body;
         if (!email || !password) {
             return res.status(400).render('login', {
                 message: 'Fields should not be empty',
@@ -91,8 +91,24 @@ exports.login = async (req, res) => {
                     });
                 }
 
-                res.cookie('user_id', result[0].user_id);
-                res.cookie('username', result[0].username);
+                if (expire) {
+                    res.cookie('user_id', result[0].user_id, {
+                        expires: new Date(
+                            Date.now() + 1000 * 60 * 60 * 24 * 365
+                        ),
+                        httpOnly: true,
+                    });
+                    res.cookie('username', result[0].username, {
+                        expires: new Date(
+                            Date.now() + 1000 * 60 * 60 * 24 * 365
+                        ),
+                        httpOnly: true,
+                    });
+                } else {
+                    res.cookie('user_id', result[0].user_id);
+                    res.cookie('username', result[0].username);
+                }
+
                 res.redirect('/dashboard');
             }
         );
