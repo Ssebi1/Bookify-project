@@ -22,9 +22,23 @@
         </ul>
     </div>
 
+    <% var finished=0, unfinished=0, notstarted=0; %>
+    <% for( var i = 0; i<=length-1; i++) { %>
+    <% if(result[i].book_progress==0) { %>
+    <% notstarted++; } %>
+    <% if(result[i].book_progress>=1 && result[i].book_progress<=99) { %>
+    <% unfinished++; } %>
+    <% if(result[i].book_progress==100) { %>
+    <% finished++; } %>
+    <% } %>
+
     <div class="header">Finished</div>
+    <div class="count"><%= finished %></div>
+    <div class="minimize minimize-1" id="minimize-1"><i class="fa fa-angle-up" id="icon-1" onclick="minimize(1)"
+            aria-hidden="true"></i>
+    </div>
     <hr class="categoryHr">
-    <div class="bookArea finished">
+    <div class="bookArea finished area-1">
         <% for( var i = 0; i<=length-1; i++) { %>
         <% if(result[i].book_progress==100) { %>
         <a href="/book?id=<%=result[i].book_id%>">
@@ -39,10 +53,12 @@
 
     </div>
 
-
     <div class="header">On going</div>
+    <div class="count"><%= unfinished %></div>
+    <div class="minimize minimize-2" onclick="minimize(2)"><i class="fa fa-angle-up" id="icon-2" aria-hidden="true"></i>
+    </div>
     <hr class="categoryHr">
-    <div class="bookArea onGoing">
+    <div class="bookArea onGoing area-2">
         <% for( var i = 0; i<=length-1; i++) { %>
         <% if(result[i].book_progress>=1 && result[i].book_progress<=99) { %>
         <a href="/book?id=<%=result[i].book_id%>">
@@ -57,9 +73,15 @@
         <% } %>
     </div>
 
+
+
     <div class="header">Not Started</div>
+    <div class="count"><%= notstarted %></div>
+    <div class="minimize minimize-3" onclick="minimize(3)"><i class="fa fa-angle-up" id="icon-3"
+            onkeypress="minimize(3)" aria-hidden="true"></i>
+    </div>
     <hr class="categoryHr">
-    <div class="bookArea notStarted">
+    <div class="bookArea notStarted area-3">
         <% for( var i = 0; i<=length-1; i++) { %>
         <% if(result[i].book_progress==0) { %>
         <a href="/book?id=<%=result[i].book_id%>">
@@ -77,6 +99,22 @@
 
     <a href='/dashboard/add_book'><button class="add_button" type="submit" placeholder="Add Book">Add Book
         </button>
+
+        <script>
+
+            function minimize(number) {
+                if (document.querySelector('.area-' + number).clientHeight !== 0)
+                    document.querySelector('.area-' + number).style.height = "0px";
+                else
+                    document.querySelector('.area-' + number).style.height = "initial";
+
+                if (document.getElementById('icon-' + number).className == "fa fa-angle-up")
+                    document.getElementById('icon-' + number).className = "fa fa-angle-down";
+                else
+                    document.getElementById('icon-' + number).className = "fa fa-angle-up";
+            }
+
+        </script>
 </body>
 
 </html>

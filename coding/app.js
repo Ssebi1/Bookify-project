@@ -10,14 +10,14 @@ dotenv.config({ path: './.env' });
 //Database connect
 const mysql = require('mysql');
 const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
+	host: process.env.DATABASE_HOST,
+	user: process.env.DATABASE_USER,
+	password: process.env.DATABASE_PASSWORD,
+	database: process.env.DATABASE
 });
 
 db.connect((err) => {
-    if (err) throw err;
+	if (err) throw err;
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -32,7 +32,7 @@ app.set('view engine', 'ejs');
 
 //Connect to the server on port 8080 by default
 app.listen(port, (error) => {
-    if (error) throw error;
+	if (error) throw error;
 });
 
 //Root css file
@@ -40,89 +40,80 @@ app.use(express.static(__dirname + '/public'));
 
 //Routes
 app.get('/', (req, res) => {
-    if (req.cookies.user_id) {
-        db.query(
-            'SELECT * FROM books WHERE user_id = ? ORDER BY book_id DESC',
-            [req.cookies.user_id],
-            (error, result) => {
-                if (error) throw error;
-                res.render('dashboard.ejs', {
-                    length: result.length,
-                    result,
-                    username: req.cookies.username,
-                });
-            }
-        );
-    } else res.render('index.ejs');
+	if (req.cookies.user_id) {
+		db.query(
+			'SELECT * FROM books WHERE user_id = ? ORDER BY book_id DESC',
+			[ req.cookies.user_id ],
+			(error, result) => {
+				if (error) throw error;
+				res.render('dashboard.ejs', {
+					length: result.length,
+					result,
+					username: req.cookies.username
+				});
+			}
+		);
+	}
+	else res.render('index.ejs');
 });
 
 app.get('/login', (req, res) => {
-    if (!req.cookies.username) res.render('login.ejs');
-    else res.redirect('/');
+	if (!req.cookies.username) res.render('login.ejs');
+	else res.redirect('/');
 });
 
 app.get('/register', (req, res) => {
-    if (!req.cookies.username) res.render('register.ejs');
-    else res.redirect('/');
+	if (!req.cookies.username) res.render('register.ejs');
+	else res.redirect('/');
 });
 
 app.get('/dashboard', (req, res) => {
-    res.redirect('/');
+	res.redirect('/');
 });
 
 app.get('/dashboard/add_book', (req, res) => {
-    if (req.cookies.username) res.render('add_book.ejs');
-    else res.redirect('/');
+	if (req.cookies.username) res.render('add_book.ejs');
+	else res.redirect('/');
 });
 
 app.get('/book', (req, res) => {
-    var id = req.query.id;
+	var id = req.query.id;
 
-    db.query(
-        'SELECT user_id FROM books WHERE book_id = ?',
-        [id],
-        (error, result) => {
-            if (error) throw error;
-            if (result[0].user_id == req.cookies.user_id) {
-                db.query(
-                    'SELECT * FROM books WHERE book_id = ?',
-                    [id],
-                    (error, result) => {
-                        if (error) throw error;
-                        res.render('book', {
-                            book: result[0],
-                        });
-                    }
-                );
-            } else res.status(401).redirect('/');
-        }
-    );
+	db.query('SELECT user_id FROM books WHERE book_id = ?', [ id ], (error, result) => {
+		if (error) throw error;
+		if (result[0].user_id == req.cookies.user_id) {
+			db.query('SELECT * FROM books WHERE book_id = ?', [ id ], (error, result) => {
+				if (error) throw error;
+				res.render('book', {
+					book: result[0]
+				});
+			});
+		}
+		else res.status(401).redirect('/');
+	});
 });
 
 app.get('/edit_book', (req, res) => {
-    var id = req.query.id;
+	var id = req.query.id;
 
-    db.query('SELECT * FROM books WHERE book_id = ?', [id], (error, result) => {
-        if (error) throw error;
-        res.render('edit_book', {
-            book: result[0],
-        });
-    });
+	db.query('SELECT * FROM books WHERE book_id = ?', [ id ], (error, result) => {
+		if (error) throw error;
+		res.render('edit_book', {
+			book: result[0]
+		});
+	});
 });
 
 app.get('/profile', (req, res) => {
-    if (req.cookies.username) {
-        db.query(
-            'SELECT * FROM users WHERE user_id = ?',
-            [req.cookies.user_id],
-            (error, result) => {
-                if (error) throw error;
-                res.render('profile', {
-                    user: result[0],
-                });
-            }
-        );
-    } else res.status(401).redirect('/');
+	if (req.cookies.username) {
+		db.query('SELECT * FROM users WHERE user_id = ?', [ req.cookies.user_id ], (error, result) => {
+			if (error) throw error;
+			res.render('profile', {
+				user: result[0]
+			});
+		});
+	}
+	else res.status(401).redirect('/');
 });
 
 app.use('/book/action', require('./routes/book_actions.js'));
