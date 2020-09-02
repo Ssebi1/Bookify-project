@@ -42,7 +42,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
     if (req.cookies.user_id) {
         db.query(
-            'SELECT * FROM books WHERE user_id = ?',
+            'SELECT * FROM books WHERE user_id = ? ORDER BY book_id DESC',
             [req.cookies.user_id],
             (error, result) => {
                 if (error) throw error;
@@ -76,12 +76,26 @@ app.get('/dashboard/add_book', (req, res) => {
 
 app.get('/book', (req, res) => {
     var id = req.query.id;
-    db.query('SELECT * FROM books WHERE book_id = ?', [id], (error, result) => {
-        if (error) throw error;
-        res.render('book', {
-            book: result[0],
-        });
-    });
+
+    db.query(
+        'SELECT user_id FROM books WHERE book_id = ?',
+        [id],
+        (error, result) => {
+            if (error) throw error;
+            if (result[0].user_id == req.cookies.user_id) {
+                db.query(
+                    'SELECT * FROM books WHERE book_id = ?',
+                    [id],
+                    (error, result) => {
+                        if (error) throw error;
+                        res.render('book', {
+                            book: result[0],
+                        });
+                    }
+                );
+            } else res.status(401).redirect('/');
+        }
+    );
 });
 
 app.use('/book/action', require('./routes/book_actions.js'));

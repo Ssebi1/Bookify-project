@@ -25,7 +25,7 @@
             <div class="book--author">by <%= book.book_author %></div>
             <div class="book--category">Category: <%= book.book_category %></div>
             <div class="book--progress">Progress: <%= book.book_progress %></div>
-            <a class="book--link" href="<%= book.book_link %>">Link</a>
+            <a class="book--link" href="<%= book.book_link %>" target="_blank">Link</a>
             <form action="/book/action/save_notes?id=<%= book.book_id %>" method="POST" id="edit_notes"
                 name="edit_notes">
                 <button type="submit" class="save_notes">Save notes</button>
