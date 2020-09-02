@@ -15,7 +15,7 @@ exports.create = (req, res) => {
             message: 'Book title and author should not be empty',
         });
     } else {
-        if (!category) category = 'general';
+        if (!category) category = 'General';
         db.query(
             'INSERT INTO books SET ?',
             {

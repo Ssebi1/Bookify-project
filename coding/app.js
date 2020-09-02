@@ -49,6 +49,7 @@ app.get('/', (req, res) => {
                 res.render('dashboard.ejs', {
                     length: result.length,
                     result,
+                    username: req.cookies.username,
                 });
             }
         );
@@ -98,6 +99,33 @@ app.get('/book', (req, res) => {
     );
 });
 
+app.get('/edit_book', (req, res) => {
+    var id = req.query.id;
+
+    db.query('SELECT * FROM books WHERE book_id = ?', [id], (error, result) => {
+        if (error) throw error;
+        res.render('edit_book', {
+            book: result[0],
+        });
+    });
+});
+
+app.get('/profile', (req, res) => {
+    if (req.cookies.username) {
+        db.query(
+            'SELECT * FROM users WHERE user_id = ?',
+            [req.cookies.user_id],
+            (error, result) => {
+                if (error) throw error;
+                res.render('profile', {
+                    user: result[0],
+                });
+            }
+        );
+    } else res.status(401).redirect('/');
+});
+
 app.use('/book/action', require('./routes/book_actions.js'));
+app.use('/user/action', require('./routes/user_actions.js'));
 app.use('/auth', require('./routes/auth.js'));
 app.use('/dashboard/crud', require('./routes/crud.js'));

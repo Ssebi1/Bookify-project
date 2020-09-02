@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/profileStyle.css">
+    <title>Profile</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <a href="/">
+                <li class="nav--title">BOOKIFY</li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="login--container">
+
+        <form action="/user/action/edit_profile?id=<%= user.user_id %>" method="post" class="login--form">
+            <input type="text" name="username" value="<%= user.username %>"><br>
+            <input type="email" name="email" value="<%= user.user_email %>" autocomplete="off" disabled><br>
+            <input type="password" name="password" placeholder="password hidden" autocomplete="off"><br>
+
+            <button type="submit">Edit Profile</button>
+        </form>
+        <br>
+    </div>
+
+</body>
+
+</html>

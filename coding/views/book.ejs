@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bookStyle.css">
-    <title>Book</title>
+    <title>Bookify - <%= book.book_title %></title>
 </head>
 <div class="navbar">
     <ul>
@@ -25,14 +25,16 @@
             <div class="book--author">by <%= book.book_author %></div>
             <div class="book--category">Category: <%= book.book_category %></div>
             <div class="book--progress">Progress: <%= book.book_progress %></div>
+            <% if (book.book_link) { %>
             <a class="book--link" href="<%= book.book_link %>" target="_blank">Link</a>
+            <% } %>
             <form action="/book/action/save_notes?id=<%= book.book_id %>" method="POST" id="edit_notes"
                 name="edit_notes">
                 <button type="submit" class="save_notes">Save notes</button>
             </form>
 
-            <button type="submit" class="edit_book">Edit book </button>
-            <a href="/book/action/delete?id=<%= book.book_id %>" type="submit" class="delete_book">Delete book </a>
+            <a href="/edit_book?id=<%= book.book_id %>" class="edit_book">Edit book </a>
+            <a href="/book/action/delete?id=<%= book.book_id %>" class="delete_book">Delete book </a>
         </div>
         <div class="notes--area">
             <textarea name="notes" id="notes" form="edit_notes" class="book--notes"

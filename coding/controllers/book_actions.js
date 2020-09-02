@@ -39,3 +39,17 @@ exports.saveNotes = (req, res) => {
         }
     );
 };
+
+exports.editBook = (req, res) => {
+    const { title, author, category, link, progress } = req.body;
+    var id = req.query.id;
+    db.query(
+        'UPDATE books SET book_title = ?, book_author = ?, book_category = ?, book_link=?, book_progress=? WHERE book_id = ?',
+        [title, author, category, link, progress, id],
+        (error, result) => {
+            res.redirect('/edit_book?id=' + id);
+        }
+    );
+};
+
+
