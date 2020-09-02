@@ -74,5 +74,16 @@ app.get('/dashboard/add_book', (req, res) => {
     else res.redirect('/');
 });
 
+app.get('/book', (req, res) => {
+    var id = req.query.id;
+    db.query('SELECT * FROM books WHERE book_id = ?', [id], (error, result) => {
+        if (error) throw error;
+        res.render('book', {
+            book: result[0],
+        });
+    });
+});
+
+app.use('/book/action', require('./routes/book_actions.js'));
 app.use('/auth', require('./routes/auth.js'));
 app.use('/dashboard/crud', require('./routes/crud.js'));

@@ -13,7 +13,7 @@
 
     <div class="navbar">
         <ul>
-            <a href="#">
+            <a href="/">
                 <li class="nav--title">BOOKIFY</li>
             </a>
             <a href="#">
@@ -28,11 +28,13 @@
     <div class="bookArea finished">
         <% for( var i = 0; i<=length-1; i++) { %>
         <% if(result[i].book_progress==100) { %>
-        <div class="book">
-            <div class="book--title"><%= result[i].book_title %></div>
-            <div class="book--author">by <%= result[i].book_author %></div>
-            <div class="book--category">Category: <%= result[i].book_category %></div>
-        </div>
+        <a href="/book?id=<%=result[i].book_id%>">
+            <div class="book">
+                <div class="book--title"><%= result[i].book_title %></div>
+                <div class="book--author">by <%= result[i].book_author %></div>
+                <div class="book--category">Category: <%= result[i].book_category %></div>
+            </div>
+        </a>
         <% } %>
         <% } %>
 
@@ -44,12 +46,14 @@
     <div class="bookArea onGoing">
         <% for( var i = 0; i<=length-1; i++) { %>
         <% if(result[i].book_progress>=1 && result[i].book_progress<=99) { %>
-        <div class="book">
-            <div class="book--title"><%= result[i].book_title %></div>
-            <div class="book--author">by <%= result[i].book_author %></div>
-            <div class="book--category">Category: <%= result[i].book_category %></div>
-            <div class="book--progress">Progres: <%= result[i].book_progress %>%</div>
-        </div>
+        <a href="/book?id=<%=result[i].book_id%>">
+            <div class="book">
+                <div class="book--title"><%= result[i].book_title %></div>
+                <div class="book--author">by <%= result[i].book_author %></div>
+                <div class="book--category">Category: <%= result[i].book_category %></div>
+                <div class="book--progress">Progres: <%= result[i].book_progress %>%</div>
+            </div>
+        </a>
         <% } %>
         <% } %>
     </div>
@@ -59,11 +63,13 @@
     <div class="bookArea notStarted">
         <% for( var i = 0; i<=length-1; i++) { %>
         <% if(result[i].book_progress==0) { %>
-        <div class="book">
-            <div class="book--title"><%= result[i].book_title %></div>
-            <div class="book--author">by <%= result[i].book_author %></div>
-            <div class="book--category">Category: <%= result[i].book_category %></div>
-        </div>
+        <a href="/book?id=<%=result[i].book_id%>">
+            <div class="book">
+                <div class="book--title"><%= result[i].book_title %></div>
+                <div class="book--author">by <%= result[i].book_author %></div>
+                <div class="book--category">Category: <%= result[i].book_category %></div>
+            </div>
+        </a>
         <% } %>
         <% } %>
     </div>

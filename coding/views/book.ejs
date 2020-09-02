@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bookStyle.css">
+    <title>Book</title>
+</head>
+<div class="navbar">
+    <ul>
+        <a href="/">
+            <li class="nav--title">BOOKIFY</li>
+        </a>
+        <a href="#">
+            <li class="nav--small">Profile</li>
+        </a>
+    </ul>
+</div>
+
+<body>
+    <div class="content">
+        <div class="book--area">
+            <div class="book--title"><%= book.book_title %></div>
+            <div class="book--author">by <%= book.book_author %></div>
+            <div class="book--category">Category: <%= book.book_category %></div>
+            <div class="book--progress">Progress: <%= book.book_progress %></div>
+            <a class="book--link" href="<%= book.book_link %>">Link</a>
+            <form action="/book/action/save_notes?id=<%= book.book_id %>" method="POST" id="edit_notes"
+                name="edit_notes">
+                <button type="submit" class="save_notes">Save notes</button>
+            </form>
+
+            <button type="submit" class="edit_book">Edit book </button>
+            <a href="/book/action/delete?id=<%= book.book_id %>" type="submit" class="delete_book">Delete book </a>
+        </div>
+        <div class="notes--area">
+            <textarea name="notes" id="notes" form="edit_notes" class="book--notes"
+                placeholder="Store your book notes here"><%= book.book_notes %></textarea>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
