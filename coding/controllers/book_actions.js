@@ -47,9 +47,7 @@ exports.editBook = (req, res) => {
         'UPDATE books SET book_title = ?, book_author = ?, book_category = ?, book_link=?, book_progress=? WHERE book_id = ?',
         [title, author, category, link, progress, id],
         (error, result) => {
-            res.redirect('/edit_book?id=' + id);
+            res.redirect('/book?id=' + id);
         }
     );
 };
-
-
