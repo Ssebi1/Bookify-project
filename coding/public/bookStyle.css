@@ -53,16 +53,10 @@ body {
 	width: 60%;
 }
 
-.notes--area textarea {
-	outline: none;
-	border: 1px solid rgb(189, 189, 189);
-	border-left: none;
-	width: 97%;
-	height: 478px;
+#editor {
+	height: 458px;
+	width: 100%;
 	font-size: 18px;
-	padding: 10px;
-	resize: none;
-	overflow-y: scroll;
 }
 
 .book--title {
@@ -119,7 +113,7 @@ body {
 	}
 
 	.notes--area {
-		width: 99%;
+		width: 100%;
 	}
 
 	.notes--area textarea {
@@ -130,5 +124,17 @@ body {
 	.content {
 		width: 90%;
 		flex-wrap: wrap;
+	}
+}
+
+@media only screen and (max-width: 1452px) {
+	#editor {
+		height: 433px;
+	}
+}
+
+@media only screen and (max-width: 889px) {
+	#editor {
+		height: 410px;
 	}
 }

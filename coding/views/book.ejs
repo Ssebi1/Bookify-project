@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bookStyle.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <title>Bookify - <%= book.book_title %></title>
 </head>
 <div class="navbar">
@@ -30,6 +31,7 @@
             <% } %>
             <form action="/book/action/save_notes?id=<%= book.book_id %>" method="POST" id="edit_notes"
                 name="edit_notes">
+                <input type="hidden" name="notes" class="notes">
                 <button type="submit" class="save_notes">Save notes</button>
             </form>
 
@@ -37,12 +39,50 @@
             <a href="/book/action/delete?id=<%= book.book_id %>" class="delete_book">Delete book </a>
         </div>
         <div class="notes--area">
-            <textarea name="notes" id="notes" form="edit_notes" class="book--notes"
-                placeholder="Store your book notes here"><%= book.book_notes %></textarea>
+            <div id="editor">
+            </div>
+            <!-- <textarea name="notes" id="notes" form="edit_notes" class="book--notes"
+                placeholder="Store your book notes here"><%= book.book_notes %></textarea> -->
         </div>
-
     </div>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
+    <!-- Initialize Quill editor -->
+    <script>
+        var toolbarOptions = [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'font': [] }],
+
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['code-block'],
+
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'align': [] }],
+
+        ];
+
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            placeholder: 'Store your notes here...',
+            theme: 'snow'
+        });
+
+        document.getElementById('edit_notes').onsubmit = function () {
+            var note = quill.root.innerHTML;
+            document.querySelector('.notes').value = note;
+        }
+
+        var notes = '<%- book.book_notes %>';
+        quill.root.innerHTML = notes;
+
+
+
+    </script>
 </body>
 
 </html>
