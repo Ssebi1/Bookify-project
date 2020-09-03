@@ -116,6 +116,31 @@ app.get('/profile', (req, res) => {
 	else res.status(401).redirect('/');
 });
 
+app.post('/book/search', (req, res) => {
+	var books = require('google-books-search');
+	const { book_search } = req.body;
+
+	books.search(book_search, (error, result) => {
+		res.render('add_book', {
+			result: result
+		});
+	});
+});
+
+app.get('/dashboard/add_book_search', (req, res) => {
+	var title = req.query.title;
+	var author = req.query.author;
+	var link = req.link;
+	res.render('add_book', {
+		book: {
+			title,
+			author,
+			link,
+			description
+		}
+	});
+});
+
 app.use('/book/action', require('./routes/book_actions.js'));
 app.use('/user/action', require('./routes/user_actions.js'));
 app.use('/auth', require('./routes/auth.js'));

@@ -26,7 +26,7 @@
     <div class="login--container">
         <% if (typeof message != "undefined") { %>
         <br>
-            <div class="alert"><%= message %></div>
+        <div class="alert"><%= message %></div>
         <% } %>
         <form action="/book/action/edit_book?id=<%= book.book_id %>" method="post" class="login--form">
             <label>Title</label><br>
@@ -36,7 +36,7 @@
             <label>Category</label><br>
             <input type="text" name="category" value="<%= book.book_category %>"><br>
             <label>Link</label><br>
-            <input type="text" name="link" value="<%= book.book_tlink %>"><br>
+            <input type="text" name="link" value="<%= book.book_link %>"><br>
             <label>Completition</label><br>
             <input type="range" min="0" max="100" value="<%= book.book_progress %>" name="progress"><br>
 
