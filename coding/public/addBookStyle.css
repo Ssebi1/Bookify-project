@@ -5,34 +5,6 @@ body {
 html {
 	transition: '0.3s ease';
 }
-.navbar {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 50px;
-	background: linear-gradient(60deg, rgba(72, 19, 128, 1), rgba(127, 120, 210, 1));
-}
-
-.navbar ul li {
-	display: inline-block;
-	list-style-type: none;
-}
-
-.nav--title {
-	color: white;
-	float: left;
-	font-size: 25px;
-	margin-left: -20px;
-	margin-top: -10px;
-}
-
-.nav--small {
-	color: white;
-	float: right;
-	font-size: 20px;
-	margin-right: 20px;
-	margin-top: -8px;
-}
 
 .login--container {
 	width: 100%;
@@ -164,7 +136,7 @@ input[type='text'] {
 	padding: 30px;
 	padding-bottom: 15px;
 	margin-bottom: 30px;
-	background-color: #fff1b3;
+	background-color: #fff6d0;
 	text-align: center;
 	border-radius: 10px;
 }

@@ -72,7 +72,7 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.get('/dashboard/add_book', (req, res) => {
-	if (req.cookies.username) res.render('add_book.ejs');
+	if (req.cookies.username) res.render('add_book.ejs', { username: req.cookies.username });
 	else res.redirect('/');
 });
 
@@ -85,7 +85,8 @@ app.get('/book', (req, res) => {
 			db.query('SELECT * FROM books WHERE book_id = ?', [ id ], (error, result) => {
 				if (error) throw error;
 				res.render('book', {
-					book: result[0]
+					book: result[0],
+					username: req.cookies.username
 				});
 			});
 		}
@@ -99,7 +100,8 @@ app.get('/edit_book', (req, res) => {
 	db.query('SELECT * FROM books WHERE book_id = ?', [ id ], (error, result) => {
 		if (error) throw error;
 		res.render('edit_book', {
-			book: result[0]
+			book: result[0],
+			username: req.cookies.username
 		});
 	});
 });
@@ -109,7 +111,8 @@ app.get('/profile', (req, res) => {
 		db.query('SELECT * FROM users WHERE user_id = ?', [ req.cookies.user_id ], (error, result) => {
 			if (error) throw error;
 			res.render('profile', {
-				user: result[0]
+				user: result[0],
+				username: req.cookies.username
 			});
 		});
 	}
@@ -122,7 +125,8 @@ app.post('/book/search', (req, res) => {
 
 	books.search(book_search, (error, result) => {
 		res.render('add_book', {
-			result: result
+			result: result,
+			username: req.cookies.username
 		});
 	});
 });
