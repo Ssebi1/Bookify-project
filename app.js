@@ -16,10 +16,6 @@ const db = mysql.createPool({
     database: process.env.DATABASE,
 });
 
-db.getConnection((err) => {
-    if (err) throw err;
-});
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
