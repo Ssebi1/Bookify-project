@@ -1,0 +1,90 @@
+<!-- Header -->
+<%- include('header'); %>
+<link rel="stylesheet" href="/addBookStyle.css" type="text/css">
+<title>Add Book</title>
+
+<!-- Navigation -->
+<%- include('navigation'); %>
+
+
+<div class="login--container">
+    <% if (typeof message != "undefined") { %>
+    <br>
+    <div class="alert"><%= message %></div>
+    <% } %>
+
+    <form action="/dashboard/crud/create" method="post" class="login--form">
+        <label>Title</label><br>
+        <input type="text" name="title" class="title" value=""><br>
+        <label>Author</label><br>
+        <input type="text" name="author" class="author" value=""><br>
+        <label>Category</label><br>
+        <input type="text" name="category" class="category" value=""><br>
+        <label>Link</label><br>
+        <input type="text" name="link" class="link" class="link" value=""><br>
+        <label>Completition</label><br>
+        <input type="range" min="0" max="100" value="0" name="progress"><br>
+        <input type="hidden" class="description" name="description">
+
+        <button type="submit">Add Book</button>
+
+    </form>
+</div>
+
+<div class="or--container">
+    <div class="or--title">OR</div>
+</div>
+
+<div class="search--container">
+    <form action="/book/search" method="POST">
+        <input type="text" name="book_search" placeholder="Search online for a book">
+        <button type="submit" name="search" class="search">Search</button>
+    </form>
+</div>
+
+<% if( typeof result !== "undefined") { %>
+<% for( var i = 0 ; i<= result.length-1 ; i++) { %>
+<div class="results--container">
+    <div class="book">
+        <div class="book--title"><%= result[i].title; %></div>
+        <div class="book--author"><%= result[i].authors %></div>
+        <div class="book--categories"><%= result[i].categories %></div>
+        <div class="book--description"><%= result[i].description %></div>
+        <a href='<%= result[i].link %>' target="_blank" class="book--linka">
+            <div class="book--link">Link</div>
+        </a>
+
+        <!-- <a
+                href="/add_search_book?title=<%= result[i].title; %>&author=<%= result[i].authors %>&link=<%= result[i].link; %>&description=<%=result[i].description %>"> -->
+        <button onclick='add_book("<%= i %>")'>Add</button>
+        <!-- </a> -->
+    </div>
+</div>
+<% } %>
+<% } %>
+
+
+<script>
+    function add_book(i) {
+
+        var title = document.querySelectorAll('.book--title');
+        var author = document.querySelectorAll('.book--author');
+        var categories = document.querySelectorAll('.book--categories');
+        var description = document.querySelectorAll('.book--description');
+        var link = document.querySelectorAll('.book--linka');
+
+        document.querySelector('.title').value = title[i].textContent;
+        document.querySelector('.author').value = author[i].textContent;
+        document.querySelector('.category').value = categories[i].textContent;
+        document.querySelector('.description').value = description[i].textContent.toString().replace(/"/g, "'");
+        document.querySelector('.link').value = link[i].href;
+
+
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+
+    }
+</script>
+</body>
+
+</html>

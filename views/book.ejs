@@ -1,0 +1,79 @@
+<!-- Navigation -->
+<%- include('header'); %>
+<link rel="stylesheet" href="/bookStyle.css">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<title>Bookify - <%= book.book_title %></title>
+
+<!-- Navigation -->
+<%- include('navigation'); %>
+
+<div class="content">
+    <div class="book--area">
+        <div class="book--title"><%= book.book_title %></div>
+        <div class="book--author">by <%= book.book_author %></div>
+        <div class="book--category">Category: <%= book.book_category %></div>
+        <div class="book--progress">Progress: <%= book.book_progress %></div>
+        <% if (book.book_link) { %>
+        <a class="book--link" href="<%= book.book_link %>" target="_blank">Link</a>
+        <% } %>
+        <form action="/book/action/save_notes?id=<%= book.book_id %>" method="POST" id="edit_notes" name="edit_notes">
+            <input type="hidden" name="notes" class="notes">
+            <button type="submit" class="save_notes">Save notes</button>
+        </form>
+        <a href="/edit_book?id=<%= book.book_id %>" class="edit_book">Edit book </a>
+        <a href="/book/action/delete?id=<%= book.book_id %>"
+            onclick="return confirm('Are you sure you want to delete this book?')" class="delete_book">Delete book
+        </a>
+    </div>
+    <div class="notes--area">
+        <div id="editor">
+        </div>
+    </div>
+</div>
+
+<%- include('footer'); %>
+
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+    var toolbarOptions = [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'font': [] }],
+
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['code-block'],
+
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'align': [] }],
+
+    ];
+
+    var quill = new Quill('#editor', {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'Store your notes here...',
+        theme: 'snow'
+    });
+
+    document.getElementById('edit_notes').onsubmit = function () {
+        var note = quill.root.innerHTML;
+        document.querySelector('.notes').value = note;
+    }
+
+    var notes = "<%- book.book_notes %>";
+    quill.root.innerHTML = notes;
+
+    function confirmDelete() {
+        confirm("Are your sure you want to delete this book?");
+    }
+
+</script>
+</body>
+
+</html>

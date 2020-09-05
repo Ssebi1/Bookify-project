@@ -1,0 +1,36 @@
+<!-- Navigation -->
+<%- include('header'); %>
+<link rel="stylesheet" href="/editBookStyle.css" type="text/css">
+<title>Edit Book</title>
+
+<!-- Navigation -->
+<%- include('navigation'); %>
+
+<div class="login--container">
+    <% if (typeof message != "undefined") { %>
+    <br>
+    <div class="alert"><%= message %></div>
+    <% } %>
+    <form action="/book/action/edit_book?id=<%= book.book_id %>" method="post" class="login--form">
+        <label>Title</label><br>
+        <input type="text" name="title" value="<%= book.book_title %>"><br>
+        <label>Author</label><br>
+        <input type="text" name="author" value="<%= book.book_author %>"><br>
+        <label>Category</label><br>
+        <input type="text" name="category" value="<%= book.book_category %>"><br>
+        <label>Link</label><br>
+        <input type="text" name="link" value="<%= book.book_link %>"><br>
+        <label>Completition</label><br>
+        <input type="range" min="0" max="100" value="<%= book.book_progress %>" name="progress"><br>
+
+        <button type="submit">Edit Book</button>
+
+    </form>
+</div>
+
+<%- include('footer'); %>
+
+
+</body>
+
+</html>
