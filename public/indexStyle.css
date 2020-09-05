@@ -38,6 +38,7 @@ body {
     font-size: 24px;
     padding: 15px;
     margin-top: -10px;
+    cursor: pointer;
 }
 
 .nav--login button {
@@ -147,7 +148,8 @@ body {
 .component {
     margin: 0 auto;
     height: auto;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     border-radius: 15px;
     border: 1px solid black;
     border-top: 0;
@@ -223,6 +225,10 @@ body {
     margin-left: 5%;
 }
 
+.contact a {
+    color: black;
+}
+
 .footer {
     width: 100%;
     height: auto;
@@ -273,5 +279,13 @@ body {
 
     .big--text {
         font-size: 60px;
+    }
+
+    .about {
+        width: 90%;
+    }
+
+    .banner--content {
+        padding-bottom: 100px;
     }
 }

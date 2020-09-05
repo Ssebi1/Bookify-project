@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/indexStyle.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Bookify</title>
 </head>
 
 <body>
@@ -21,12 +21,8 @@
             <a href="/login">
                 <li class="nav--login"><button>Login</button></li>
             </a>
-            <a href="#">
-                <li class="nav--small">Contact</li>
-            </a>
-            <a href="#">
-                <li class="nav--small">About</li>
-            </a>
+            <li class="nav--small">Contact</li>
+            <li class="nav--small">About</li>
         </ul>
     </div>
 
@@ -35,9 +31,9 @@
             <div class="text--content">
                 <ul>
                     <li class="big--text">KEEP TRACK OF YOUR READING PROGRESS</li>
-                    <li class="small--text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt
-                        tortor tortor. Pellentesque ex augue, porta
-                        eget imperdiet a, fringilla suscipit leo.</li>
+                    <li class="small--text">Store your book titles in bookify and write your notes for a better
+                        acknowledging of your favourite reads. Search for a variety of titles and add them to their
+                        profile.</li>
                     <li><a href="/register"><button>Create your free account</button></a></li>
                 </ul>
             </div>
@@ -80,9 +76,12 @@
         <div class="contact--flex">
             <div class="contact--text">Dancau Sebastian<br>
                 sebidancau@yahoo.com <br>
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <i class="fa fa-github" aria-hidden="true"></i>
-                <i class="fa fa-twitter" aria-hidden="true"></i></div>
+                <a href="https://www.facebook.com/sebastian.dancau.9" target="_blank"><i class="fa fa-facebook"
+                        aria-hidden="true"></i></a>
+                <a href="https://github.com/Ssebi1" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/sebidancau1701" target="_blank"><i class="fa fa-twitter"
+                        aria-hidden="true"></i></a>
+            </div>
             <div class="contact--image"><img src="/profile.png"></div>
 
         </div>
@@ -94,7 +93,16 @@
             by Dancau Sebastian <br>
             Copyright 2020</div>
     </div>
+    <script>
+        var buttons = document.querySelectorAll('.nav--small');
+        buttons[0].addEventListener('click', () => {
+            document.querySelector('.contact').scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' });
+        });
 
+        buttons[1].addEventListener('click', () => {
+            document.querySelector('.about').scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' });
+        });
+    </script>
 </body>
 
 </html>

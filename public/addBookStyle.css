@@ -1,163 +1,169 @@
 body {
-	margin: 0;
-	font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
 html {
-	transition: '0.3s ease';
+    transition: '0.3s ease';
 }
 
 .login--container {
-	width: 100%;
-	max-width: 600px;
-	height: auto;
-	margin: 0 auto;
-	margin-top: 100px;
-	background-color: white;
-	border-radius: 10px;
-	text-align: center;
-	box-shadow: 8px 5px 36px -5px rgba(0, 0, 0, 0.55);
-	font-size: 20px;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 8px 5px 36px -5px rgba(0, 0, 0, 0.55);
+    font-size: 20px;
 }
 .login--form {
-	padding-top: 30px;
-	padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .login--container input {
-	width: 80%;
-	height: 35px;
-	border: none;
-	outline: none;
-	background-color: #efefef;
-	border-radius: 6px;
-	margin-bottom: 20px;
+    width: 80%;
+    height: 35px;
+    border: none;
+    outline: none;
+    background-color: #efefef;
+    border-radius: 6px;
+    margin-bottom: 20px;
 }
 
 .login--container input:focus {
-	background-color: #d1d1d1;
+    background-color: #d1d1d1;
 }
 
 .login--container label {
-	float: left;
-	margin-left: 10%;
+    float: left;
+    margin-left: 10%;
 }
 
 input[type='text'] {
-	font-size: 15px;
+    font-size: 15px;
 }
 
 .login--container .alert {
-	position: relative;
-	display: block;
-	width: 80%;
-	height: auto;
-	padding: 5px;
-	text-align: center;
-	background-color: #f74676;
-	border-radius: 8px;
-	margin: 0 auto;
-	color: white;
-	font-size: 20px;
+    position: relative;
+    display: block;
+    width: 80%;
+    height: auto;
+    padding: 5px;
+    text-align: center;
+    background-color: #f74676;
+    border-radius: 8px;
+    margin: 0 auto;
+    color: white;
+    font-size: 20px;
 }
 
 .login--container button {
-	width: 80%;
-	height: 40px;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	font-size: 22px;
-	transition: 0.3s ease;
+    width: 80%;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    transition: 0.3s ease;
 }
 
 .login--container button:hover {
-	background-color: #c9c9c9;
+    background-color: #c9c9c9;
 }
 
 .search--container {
-	width: 100%;
-	max-width: 600px;
-	height: auto;
-	padding-top: 100px;
-	padding-bottom: 100px;
-	margin: 0 auto;
-	text-align: center;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .search--container input {
-	display: inline-block;
-	outline: none;
-	border: none;
-	width: 60%;
-	height: 40px;
-	background-color: #efefef;
+    display: inline-block;
+    outline: none;
+    border: none;
+    width: 60%;
+    height: 40px;
+    background-color: #efefef;
 }
 
 .search--container button {
-	display: inline-block;
-	width: 20%;
-	height: 40px;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	font-size: 18px;
-	transition: 0.3s ease;
+    display: inline-block;
+    width: 20%;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s ease;
 }
 
 .search--container button:hover {
-	background-color: #c9c9c9;
+    background-color: #c9c9c9;
 }
 
 .search--container input:focus {
-	background-color: #d1d1d1;
+    background-color: #d1d1d1;
 }
 
 .or--container {
-	width: 70px;
-	height: 70px;
-	text-align: center;
-	margin: 0 auto;
-	font-size: 30px;
-	background-color: rgba(72, 19, 128, 1);
-	border-radius: 100px;
-	color: white;
-	margin-top: 100px;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 30px;
+    background-color: rgba(72, 19, 128, 1);
+    border-radius: 100px;
+    color: white;
+    margin-top: 100px;
 }
 
 .or--title {
-	padding-top: 12px;
+    padding-top: 12px;
 }
 
 .book {
-	height: auto;
-	width: 100%;
-	max-width: 500px;
-	display: block;
-	margin: 0 auto;
-	padding: 30px;
-	padding-bottom: 15px;
-	margin-bottom: 30px;
-	background-color: #fff6d0;
-	text-align: center;
-	border-radius: 10px;
+    height: auto;
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    background-color: #fff6d0;
+    text-align: center;
+    border-radius: 10px;
 }
 
 .book button {
-	padding: 5px;
-	border: none;
-	outline: none;
-	margin-top: 10px;
-	font-size: 15px;
-	padding: 10px;
-	border-radius: 5px;
-	background-color: white;
-	cursor: pointer;
+    padding: 5px;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
 }
 
 .book button:hover {
-	background-color: rgb(233, 233, 233);
+    background-color: rgb(233, 233, 233);
 }
 
 .book--title {
-	font-size: 20px;
-	font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+    .book {
+        max-width: 280px;
+    }
 }
