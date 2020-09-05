@@ -1,2 +1,2 @@
-For a demo check (account needs to be created)
+For demo (account needs to be created):<br>
 https://bookify-read.herokuapp.com/
