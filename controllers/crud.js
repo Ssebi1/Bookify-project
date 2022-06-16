@@ -17,6 +17,7 @@ exports.create = (req, res) => {
 	}
 	else {
 		if (!category) category = 'General';
+		if (req.cookies.user_type != "teacher" && req.cookies.user_type != "admin") return;
 		db.query(
 			'INSERT INTO books SET ?',
 			{
@@ -25,7 +26,6 @@ exports.create = (req, res) => {
 				book_author: author,
 				book_category: category,
 				book_link: link,
-				book_progress: progress,
 				book_notes: description
 			},
 			(error, result) => {

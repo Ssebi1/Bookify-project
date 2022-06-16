@@ -14,7 +14,7 @@ exports.delete = (req, res) => {
         [id],
         (error, result) => {
             if (error) throw error;
-            if (result[0].user_id == req.cookies.user_id) {
+            if((req.cookies.user_type == "teacher" && result[0].user_id == req.cookies.user_id) || req.cookies.user_type == "admin") {
                 db.query(
                     'DELETE FROM books WHERE book_id = ? ',
                     [id],
@@ -41,11 +41,11 @@ exports.saveNotes = (req, res) => {
 };
 
 exports.editBook = (req, res) => {
-    const { title, author, category, link, progress } = req.body;
+    const { title, author, category, link } = req.body;
     var id = req.query.id;
     db.query(
-        'UPDATE books SET book_title = ?, book_author = ?, book_category = ?, book_link=?, book_progress=? WHERE book_id = ?',
-        [title, author, category, link, progress, id],
+        'UPDATE books SET book_title = ?, book_author = ?, book_category = ?, book_link=? WHERE book_id = ?',
+        [title, author, category, link, id],
         (error, result) => {
             res.redirect('/book?id=' + id);
         }

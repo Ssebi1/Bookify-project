@@ -42,6 +42,7 @@ exports.register = (req, res) => {
                     username: username,
                     user_email: email,
                     user_password: hashedPassword,
+                    user_type: "user"
                 },
                 (error, result) => {
                     if (error) throw error;
@@ -107,6 +108,7 @@ exports.login = async (req, res) => {
                 } else {
                     res.cookie('user_id', result[0].user_id);
                     res.cookie('username', result[0].username);
+                    res.cookie('user_type', result[0].user_type);
                 }
 
                 res.redirect('/dashboard');
@@ -120,5 +122,6 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
     res.clearCookie('username');
     res.clearCookie('user_id');
+    res.clearCookie('user_type');
     res.redirect('/');
 };

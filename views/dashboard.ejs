@@ -7,86 +7,44 @@
 <%- include('navigation'); %>
 
 
-<!-- Number of books in each category -->
-<% var finished=0, unfinished=0, notstarted=0; %>
-<% for( var i = 0; i<=length-1; i++) { %>
-<% if(result[i].book_progress==0) { %>
-<% notstarted++; } %>
-<% if(result[i].book_progress>=1 && result[i].book_progress<=99) { %>
-<% unfinished++; } %>
-<% if(result[i].book_progress==100) { %>
-<% finished++; } %>
+<% for( var i = 0; i<=categories.length-1; i++) { %>
+    <!-- Book category area -->
+    <div class="header"><%= categories[i].book_category %></div>
+    <div class="count"><%= booksPerCategoryCount[categories[i].book_category] %></div>
+    <div class="minimize minimize-<%=i%>" id="minimize-<%=i%>"><i class="fa fa-angle-up" id="icon-<%=i%>" onclick="minimize(<%=i%>)"
+            aria-hidden="true"></i>
+    </div>
+    <hr class="categoryHr">
+    <div class="bookArea finished area-<%=i%>">
+        <% for( var j = 0; j <= result.length-1; j++) { %>
+        <% if(result[j].book_category==categories[i].book_category) { %>
+        <a href="/book?id=<%=result[j].book_id%>">
+            <div class="book">
+                <div class="book--title"><%= result[j].book_title %></div>
+                <div class="book--author">by <%= result[j].book_author %></div>
+            </div>
+        </a>
+        <% } %>
+        <% } %>
+    </div>
+<% } %>
+
+<!-- Add book button -->
+<% if(user_type == "teacher" || user_type == "admin") { %>
+    <div class="bottom-buttons-container">
+        <% if(myBooks) { %>
+            <a class="add_button" href='/dashboard' style="background-color: #3a9c53;"><i class="fa fa-book" aria-hidden="true"></i></a>
+        <% } else { %>
+            <a class="add_button" href='/dashboard?mybooks=true'><i class="fa fa-book" aria-hidden="true"></i></a>
+        <% } %>
+        <a class="add_button" href='/dashboard/add_book'>Add book</a>
+        <% if(user_type == "admin") { %>
+            <a class="add_button" href='/dashboard/teachers'>Teachers</a>
+        <% } %>
+    </div>
 <% } %>
 
 
-<!-- Finished books area -->
-<div class="header">Finished</div>
-<div class="count"><%= finished %></div>
-<div class="minimize minimize-1" id="minimize-1"><i class="fa fa-angle-up" id="icon-1" onclick="minimize(1)"
-        aria-hidden="true"></i>
-</div>
-<hr class="categoryHr">
-<div class="bookArea finished area-1">
-    <% for( var i = 0; i<=length-1; i++) { %>
-    <% if(result[i].book_progress==100) { %>
-    <a href="/book?id=<%=result[i].book_id%>">
-        <div class="book">
-            <div class="book--title"><%= result[i].book_title %></div>
-            <div class="book--author">by <%= result[i].book_author %></div>
-            <div class="book--category">Category: <%= result[i].book_category %></div>
-        </div>
-    </a>
-    <% } %>
-    <% } %>
-
-</div>
-
-<!-- On going books area -->
-<div class="header">On going</div>
-<div class="count"><%= unfinished %></div>
-<div class="minimize minimize-2" onclick="minimize(2)"><i class="fa fa-angle-up" id="icon-2" aria-hidden="true"></i>
-</div>
-<hr class="categoryHr">
-<div class="bookArea onGoing area-2">
-    <% for( var i = 0; i<=length-1; i++) { %>
-    <% if(result[i].book_progress>=1 && result[i].book_progress<=99) { %>
-    <a href="/book?id=<%=result[i].book_id%>">
-        <div class="book">
-            <div class="book--title"><%= result[i].book_title %></div>
-            <div class="book--author">by <%= result[i].book_author %></div>
-            <div class="book--category">Category: <%= result[i].book_category %></div>
-            <div class="book--progress"><%= result[i].book_progress %>%</div>
-        </div>
-    </a>
-    <% } %>
-    <% } %>
-</div>
-
-<!-- No started books area -->
-<div class="header">Not Started</div>
-<div class="count"><%= notstarted %></div>
-<div class="minimize minimize-3" onclick="minimize(3)"><i class="fa fa-angle-up" id="icon-3" onkeypress="minimize(3)"
-        aria-hidden="true"></i>
-</div>
-<hr class="categoryHr">
-<div class="bookArea notStarted area-3">
-    <% for( var i = 0; i<=length-1; i++) { %>
-    <% if(result[i].book_progress==0) { %>
-    <a href="/book?id=<%=result[i].book_id%>">
-        <div class="book">
-            <div class="book--title"><%= result[i].book_title %></div>
-            <div class="book--author">by <%= result[i].book_author %></div>
-            <div class="book--category">Category: <%= result[i].book_category %></div>
-        </div>
-    </a>
-    <% } %>
-    <% } %>
-</div>
-
-
-<!-- Add book button -->
-<a href='/dashboard/add_book'><button class="add_button" type="submit" placeholder="Add Book">Add Book
-    </button></a>
 
 
 <!-- Js for minimizing book area -->

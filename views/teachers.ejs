@@ -1,0 +1,26 @@
+<!-- Header -->
+<%- include('header'); %>
+<link rel="stylesheet" href="/dashboardStyle.css">
+<title>Dashboard</title>
+
+<!-- Navigation -->
+<%- include('navigation'); %>
+
+    <table class="teachers-table">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        <% for( var i = 0; i < teachers.length; i++) { %>
+            <tr>
+                <td><%= teachers[i].username %></td>
+                <td><%= teachers[i].user_email %></td>
+                <td><a href="/dashboard/teachers/delete?id=<%= teachers[i].user_id %>" style="color:red" onclick="return confirm('Are you sure you want to remove this teacher\'s permissions?')"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+        <% } %>
+    </table>
+    <div class="bottom-buttons-container">
+        <a href="/dashboard/teachers/add_teacher" class="add_button add_teacher_button" placeholder="Add Teacher">Add Teacher</a>
+    </div>
+</html>
