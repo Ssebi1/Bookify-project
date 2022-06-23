@@ -1,7 +1,7 @@
 //Server setup
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4040;
 
 //Env setup
 const dotenv = require('dotenv');
@@ -26,10 +26,9 @@ app.use(cookieParser());
 
 //EJS setup
 const ejs = require('ejs');
-const { CLIENT_MULTI_RESULTS } = require('mysql/lib/protocol/constants/client');
 app.set('view engine', 'ejs');
 
-//Connect to the server on port 8080 by default
+//Connect to the server on port 4040 by default
 app.listen(port, (error) => {
     if (error) throw error;
 });
