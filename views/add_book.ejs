@@ -46,11 +46,15 @@
 <% for( var i = 0 ; i<= result.length-1 ; i++) { %>
 <div class="results--container">
     <div class="book">
-        <div class="book--title"><%= result[i].title; %></div>
-        <div class="book--author"><%= result[i].authors %></div>
-        <div class="book--categories"><%= result[i].categories %></div>
-        <div class="book--description"><%= result[i].description %></div>
-        <a href='<%= result[i].link %>' target="_blank" class="book--linka">
+        <div class="book--title"><%= result[i].volumeInfo.title; %></div>
+        <% if( typeof result[i].volumeInfo.authors !== "undefined" && result[i].volumeInfo.authors.length > 0) { %>
+        <div class="book--author"><%= result[i].volumeInfo.authors[0] %></div>
+        <% } %>
+        <% if( typeof result[i].volumeInfo.categories !== "undefined" && result[i].volumeInfo.categories.length > 0) { %>
+            <div class="book--categories"><%= result[i].volumeInfo.categories[0] %></div>
+        <% } %>
+        <div class="book--description"><%= result[i].volumeInfo.description %></div>
+        <a href='<%= result[i].selfLink %>' target="_blank" class="book--linka">
             <div class="book--link">Link</div>
         </a>
 

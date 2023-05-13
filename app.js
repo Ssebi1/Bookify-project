@@ -1,5 +1,6 @@
 //Server setup
 const express = require('express');
+const axios = require("axios");
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -126,15 +127,14 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/book/search', (req, res) => {
-    var books = require('google-books-search');
     const { book_search } = req.body;
-
-    books.search(book_search, (error, result) => {
-        res.render('add_book', {
-            result: result,
-            username: req.cookies.username,
-        });
-    });
+    axios.get('https://www.googleapis.com/books/v1/volumes?q=' + book_search + '&maxResults=10')
+        .then(response => {
+            res.render('add_book', {
+                result: response.data.items,
+                username: req.cookies.username,
+            });
+        })
 });
 
 app.get('/dashboard/add_book_search', (req, res) => {

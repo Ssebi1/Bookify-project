@@ -20,6 +20,7 @@ CREATE TABLE if not exists books (
     book_category VARCHAR(1000),
     book_link VARCHAR(1000),
     book_notes VARCHAR(10000),
+    book_progress INT,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
        ON DELETE CASCADE
        ON UPDATE CASCADE
